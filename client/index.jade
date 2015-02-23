@@ -1,0 +1,180 @@
+template(name="mainLayout")
+  +head
+  +topbar
+  +container
+  +loginModal
+
+template(name="head")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(name="description", content="Panneau de Gestion du projet ILPADS")
+    meta(name="author", content="Sylvain Nyssens")
+    title ILPADS
+
+template(name="topbar")
+  #wrapper
+    // Navigation
+    nav.navbar.navbar-default.navbar-static-top(role="navigation", style="margin-bottom: 0")
+      .navbar-header
+        button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-collapse")
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href="/") ILPADS
+      // /.navbar-header
+      ul.nav.navbar-top-links.navbar-right
+        // /.dropdown
+        li.dropdown
+          a.dropdown-toggle(data-toggle="dropdown", href="#")
+            i.fa.fa-graduation-cap.fa-fw
+            i.fa.fa-caret-down
+          ul.dropdown-menu.dropdown-tasks
+            +taskDropdownElement(href="#" task="Parcours 1" percentComplete=40 type="success")
+            +taskDropdownElement(href="#" task="Parcours 2" percentComplete=20 type="info")
+            +taskDropdownElement(href="#" task="Parcours 3" percentComplete=60 type="warning")
+            +taskDropdownElement(href="#" task="Parcours 4" percentComplete=80 type="danger")
+            +taskDropdownElement(href="#" task="Parcours 5" percentComplete=100 type="")
+            li
+              a.text-center(href="#")
+                strong Tout Les Parcours
+                i.fa.fa-angle-right
+          // /.dropdown-tasks
+        // /.dropdown
+        li.dropdown
+          a.dropdown-toggle(data-toggle="dropdown", href="#")
+            i.fa.fa-bell.fa-fw
+            i.fa.fa-caret-down
+          ul.dropdown-menu.dropdown-alerts
+            +notificationsElement(href="#" icon="fa-child" text="Classe 1 : Parcours 2 fini (50 %)" when="4 min")
+            +notificationsElement(href="#" icon="fa-users" text="Création de la classe 7" when="12 min")
+            +notificationsElement(href="#" icon="fa-graduation-cap" text="Modification parcours 2" when="5 h 43 min")
+            +notificationsElement(href="#" icon="fa-child" text="Classe 2 : Parcours 3 fini (100%)" when="Hier")
+              li
+                a.list-group-item(href="#")
+                i.fa.fa-child.fa-fw
+                | Parcours 2 fini par classe 1 (50%).
+                span.dropdown-menu-right.text-muted.small
+                  i.fa.fa-clock-o.fa-fw
+                  em 4 min
+              a.list-group-item(href="#")
+                i.fa.fa-users.fa-fw
+                | Création de la classe 7.
+                span.dropdown-menu-right.text-muted.small
+                  i.fa.fa-clock-o.fa-fw
+                  em 12 min
+              a.list-group-item(href="#")
+                i.fa.fa-graduation-cap.fa-fw
+                | Modification parcours 2.
+                span.dropdown-menu-right.text-muted.small
+                  i.fa.fa-clock-o.fa-fw
+                  em 5 h 43 min
+              a.list-group-item(href="#")
+                i.fa.fa-child.fa-fw
+                | Parcours 3 fini par classe 2 (100%).
+                span.dropdown-menu-right.text-muted.small
+                  i.fa.fa-clock-o.fa-fw
+                  em Hier
+              
+              a.text-center(href="#")
+                strong See All Alerts
+                i.fa.fa-angle-right
+          // /.dropdown-alerts
+        // /.dropdown
+        li.dropdown
+          a.dropdown-toggle(data-toggle="dropdown", href="#")
+            i.fa.fa-user.fa-fw
+            i.fa.fa-caret-down
+          ul.dropdown-menu.dropdown-user
+            li
+              a(href="#")
+                i.fa.fa-user.fa-fw
+                | User Profile
+            li
+              a(href="#")
+                i.fa.fa-gear.fa-fw
+                | Settings
+            li.divider
+            li
+              a#sign-out(href="#")
+                i.fa.fa-sign-in.fa-fw
+                | Sign Out
+            li
+              a#login(href="#")
+                i.fa.fa-sign-in.fa-fw
+                | Login
+          // /.dropdown-user
+        // /.dropdown
+      // /.navbar-top-links
+
+template(name="emailDropdownElement")
+  li
+    a(href=href)
+      div
+        strong #{name}
+        span.pull-right.text-muted
+          em #{when}
+      div
+        | #{summary}
+  li.divider
+
+template(name="taskDropdownElement")
+  li
+    a(href=href)
+      div
+        p
+          strong #{task}
+          span.pull-right.text-muted #{percentComplete}% Complete
+        .progress.progress-striped.active
+          .progress-bar(class=progressBarType role="progressbar", aria-valuenow=percentComplete, aria-valuemin="0", aria-valuemax="100", style=style)
+            span.sr-only #{percentComplete}% Effectué(#{type})
+  li.divider
+
+template(name="notificationsElement")
+  li
+    a(href=href)
+      div
+        i.fa.fa-fw(class=icon)
+        | #{text}
+        span.dropdown-menu-right.text-muted.small 
+          i.span.fa.fa-clock-o.fa-fw
+          em #{when}
+  li.divider
+
+template(name="container")
+  +sidebar
+  +page
+
+template(name="sidebar")
+  .navbar-default.sidebar(role="navigation")
+    .sidebar-nav.navbar-collapse
+      ul#side-menu.nav
+        li.sidebar-search
+          .input-group.custom-search-form
+            input.form-control(type="text", placeholder="Rechercher...")
+            span.input-group-btn
+              button.btn.btn-default(type="button")
+                i.fa.fa-search
+          // /input-group
+        each navElements
+          +navElement
+
+template(name="navElement")
+  li
+    a(href=path class=isActive)
+      if icon
+        i.fa.fa-fw(class=icon)
+      | #{label}
+      if children
+        span.fa.arrow
+    if children
+      ul.nav.nav-second-level
+        each children
+          +navElement
+
+template(name="page")
+  // Put page title and breadcrumbs here with `Router.routes[Session.get('active')]`
+  +yield
+
