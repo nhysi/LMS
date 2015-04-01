@@ -10,7 +10,7 @@ template(name="loginModal")
       .modal-content
         .modal-header
           button.close(type="button", data-dismiss="modal", aria-hidden="true") &#215;
-          h4.modal-title Please Sign In
+          h4.modal-title Connectez-vous
         .modal-body
           +loginForm
 
@@ -20,7 +20,7 @@ template(name="loginForm")
       .form-group
         input#login-email.form-control(type="email", placeholder="E-mail", name="email", autofocus="")
       .form-group
-        input#login-password.form-control(type="password", placeholder="Password", name="password", value="")
+        input#login-password.form-control(type="password", placeholder="Mot de Passe", name="password", value="")
       if errorMessage
         .row
           .col-sm-12.col-xs-12
@@ -33,11 +33,11 @@ template(name="loginForm")
               | #{currentUserMessage}
       .row
         .col-sm-4.col-xs-4
-          input#login-button.btn-success.form-control(type="submit", value="Login")
+          input#login-button.btn-success.form-control(type="submit", value="Connexion")
         .col-sm-2.col-xs-2.col-sm-offset-1.col-xs-offset-1
-          p or
+          p ou
         .col-sm-4.col-xs-4
-          button#sign-up-button.btn.btn-link.form-control(type="button") Sign up
+          button#sign-up-button.btn.btn-link.form-control(type="button") Inscription
 
 template(name="signUp")
   .container
@@ -46,14 +46,14 @@ template(name="signUp")
         .login-panel.panel.panel-default
           .panel-heading
             a.close(href="/") &#215;
-            h3.panel-title Please Sign Up
+            h3.panel-title Inscrivez-vous
           .panel-body
             form#sign-up-form(role="form")
               fieldset
                 .form-group
                   input#login-email.form-control(type="email", placeholder="E-mail", name="email", autofocus="")
                 .form-group
-                  input#login-password.form-control(type="password", placeholder="Password", name="password", value="")
+                  input#login-password.form-control(type="password", placeholder="Mot de Passe", name="password", value="")
                 if errorMessage
                   .row
                     .col-sm-12.col-xs-12
@@ -66,4 +66,4 @@ template(name="signUp")
                         | #{signUpSuccessMessage}
                 .row
                   .col-sm-6.col-xs-6
-                    input#login-button.btn-primary.form-control(type="submit", value="Create New Account")
+                    input#login-button.btn-primary.form-control(type="submit", value="Créer un nouveau compte")
