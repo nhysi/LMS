@@ -1,0 +1,50 @@
+template(name="courseManagement")
+  #page-wrapper
+    .row
+      .col-lg-12
+        h1.page-header Gestion de parcours
+    .row
+      .col-lg-12
+        .panel.panel-primary
+          .panel-heading
+            | Activitées disponible
+          .panel-body
+            .table-responsive.col-lg-6
+              table#schools.table.table-striped.table-bordered.table-hover
+                thead
+                  tr
+                    th #
+                    th Nom
+                    th Thème
+                tbody
+                  tr#1
+                    td 1
+                    td Activité 1
+                    td ILPADS
+                  tr#2
+                    td 2
+                    td Activité 2
+                    td ILPADS
+            .panel.col-lg-6
+              ul.nav.nav-tabs
+                li.active
+                  a(href="#show", data-toggle="tab") Présentation
+                li
+                  a(href="#details", data-toggle="tab") Description
+                li
+                  a(href="#picture", data-toggle="tab") Image
+                li
+                  a(href="#more", data-toggle="tab") A propos
+              .tab-content
+                #show.tab-pane.active
+                  h4 Home Tab
+                  p content
+                #details.tab-pane
+                  h4 Profile
+                  p content
+                #picture.tab-pane
+                  h4 Messages
+                  p content
+                #more.tab-pane
+                  h4 Settings
+                  p content

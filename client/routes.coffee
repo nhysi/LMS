@@ -1,5 +1,15 @@
 navRoutes = [
   new NavRoute('dashboard', 'fa-dashboard', {label: "Panneau de gestion"})
+  new NavRoute('index', '', {isMainNav: false, redirect: 'dashboard'})
+  new NavRoute('classroom', 'fa-users', {label: "Classes"})
+  new NavRoute('course','fa-graduation-cap',{label:"Parcours"})
+  new NavRoute('courseManagement','',{label:"Créer un Parcours"})
+  new NavRoute('schools','fa-university',{label:"Ecoles"})
+  new NavRoute('activities','fa-puzzle-piece',{label:"Activitées"})
+  new NavRoute('professors','fa-user',{label:"Professeurs"})
+  new NavRoute('professorCreation','',{label:"Créer un professeur"})
+
+
   new NavRoute('charts', 'fa-bar-chart-o')
   new NavRoute('chart1', '', {parentName: 'charts'})
   new NavRoute('chart2', 'fa-bar-chart-o', {parentName: 'charts'})
@@ -15,9 +25,10 @@ navRoutes = [
   new NavRoute('blank', '', {parentName: 'pages', label: "Blank Page"})
   new NavRoute('sign-up-ref', '', {redirect: 'sign-up', parentName: 'pages', layoutTemplate: 'loginLayout', label: 'Sign Up'})
   new NavRoute('sign-up', '', {isMainNav: false, template: 'signUp', layoutTemplate: 'loginLayout'})
-  new NavRoute('', '', {isMainNav: false, redirect: 'dashboard'})
-  new NavRoute('index', '', {isMainNav: false, redirect: 'dashboard'})
+  new NavRoute('login', '', {isMainNav: false, template: 'loginModal', layoutTemplate: 'loginLayout', label: 'Login'})
+  new NavRoute('', '', {isMainNav: false, template: 'home', layoutTemplate: 'loginLayout', label: 'Home'})
 ]
+ 
 
 navRouteList = new NavRouteList(navRoutes)
 

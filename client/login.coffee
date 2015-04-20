@@ -6,18 +6,14 @@ Template.loginForm.events({
     password = t.find('#login-password').value
     Meteor.loginWithPassword(email, password, (err) ->
       if err?
-        Session.set('loginErrorMessage', 'Sign In Failed: ' + err.reason)
+        Session.set('loginErrorMessage', 'Connexion impossible: ' + err.reason)
       else
-        Meteor.setTimeout(() ->
-          $('#loginModal').modal('hide')
-        , 400)
+        if (Router.current().route._path == '/login')
+          Router.go('/dashboard')
+      return false
     )
-    return false
-
   'click #sign-up-button': () ->
-    $('#loginModal').on('hidden.bs.modal', () ->
-      Router.go('/sign-up')
-    ).modal('hide')
+    Router.go('/sign-up')
     return false
 })
 
@@ -30,14 +26,18 @@ Template.signUp.events({
     password = t.find('#login-password').value
     Accounts.createUser({email, password}, (err) ->
       if err?
-        Session.set('signUpErrorMessage', 'Sign Up Failed: ' + err.reason)
+        Session.set('signUpErrorMessage', 'Inscription impossible: ' + err.reason)
       else
-        Session.set('signUpSuccessMessage', 'Sign Up Succeeded.')
+        Session.set('signUpSuccessMessage', 'Inscription réussie.')
         Meteor.setTimeout(() ->
           Session.set('signUpSuccessMessage', false)
-          Router.go('/')
-        , 400)
+          Router.go('/dashboard')
+        , 500)
     )
+    return false
+
+  'click #login-button': () ->
+    Router.go('/login')
     return false
 })
 
@@ -55,7 +55,7 @@ Template.loginForm.helpers(
 
   currentUserMessage = () ->
     if Meteor.user()
-      return 'Logged in as: ' + Meteor.user().emails[0].address
+      return 'Connecté en temps que: ' + Meteor.user().emails[0].address
     else
       return false
 )

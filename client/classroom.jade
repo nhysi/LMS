@@ -1,0 +1,37 @@
+template(name="classroom")
+  #page-wrapper
+    .row
+      .col-lg-12
+        h1.page-header Classes
+      // /.col-lg-12
+    // /.row
+    .row
+      .col-lg-12
+        .panel.panel-primary
+          .panel-heading
+            | Mes classes
+          // /.panel-heading
+          .panel-body
+            .table-responsive
+              table#dataTables-example.table.table-striped.table-bordered.table-hover
+                thead
+                  tr
+                    th #
+                    th Ecole
+                    th Classe
+                    th Nombre d'étudiants
+                    th Parcours en cours
+                tbody
+                  tr
+                    td 1
+                    td EPHEC
+                    td 3TL1
+                    td.center 42
+                    td.center Aucun
+                  tr
+                    td 2
+                    td EPHEC
+                    td 3TL2
+                    td.centre 46
+                    td.centre Aucun
+ 

@@ -1,17 +1,14 @@
 template(name="mainLayout")
-  +head
   +topbar
   +container
-  +loginModal
 
-template(name="head")
-  head
-    meta(charset="utf-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1")
-    meta(name="description", content="Panneau de Gestion du projet ILPADS")
-    meta(name="author", content="Sylvain Nyssens")
-    title ILPADS
+head
+  meta(charset="utf-8")
+  meta(http-equiv="X-UA-Compatible", content="IE=edge")
+  meta(name="viewport", content="width=device-width, initial-scale=1")
+  meta(name="description", content="LMS")
+  meta(name="author", content="Sylvain Nyssens")
+  title ILPADS
 
 template(name="topbar")
   #wrapper
@@ -77,7 +74,6 @@ template(name="topbar")
                 span.dropdown-menu-right.text-muted.small
                   i.fa.fa-clock-o.fa-fw
                   em Hier
-              
               a.text-center(href="#")
                 strong See All Alerts
                 i.fa.fa-angle-right
@@ -91,20 +87,21 @@ template(name="topbar")
             li
               a(href="#")
                 i.fa.fa-user.fa-fw
-                | User Profile
+                | Mon profil
             li
               a(href="#")
                 i.fa.fa-gear.fa-fw
-                | Settings
+                | Les Paramètres
             li.divider
             li
-              a#sign-out(href="#")
-                i.fa.fa-sign-in.fa-fw
-                | Sign Out
-            li
-              a#login(href="#")
-                i.fa.fa-sign-in.fa-fw
-                | Login
+              if currentUser
+                a#sign-out(href="#")
+                  i.fa.fa-sign-in.fa-fw
+                  | Déconnexion
+              else
+                a#login(href="#")
+                  i.fa.fa-sign-in.fa-fw
+                  | Connexion
           // /.dropdown-user
         // /.dropdown
       // /.navbar-top-links
@@ -126,7 +123,7 @@ template(name="taskDropdownElement")
       div
         p
           strong #{task}
-          span.pull-right.text-muted #{percentComplete}% Complete
+          span.pull-right.text-muted #{percentComplete}% Effectué
         .progress.progress-striped.active
           .progress-bar(class=progressBarType role="progressbar", aria-valuenow=percentComplete, aria-valuemin="0", aria-valuemax="100", style=style)
             span.sr-only #{percentComplete}% Effectué(#{type})
@@ -151,13 +148,14 @@ template(name="sidebar")
   .navbar-default.sidebar(role="navigation")
     .sidebar-nav.navbar-collapse
       ul#side-menu.nav
-        li.sidebar-search
-          .input-group.custom-search-form
-            input.form-control(type="text", placeholder="Rechercher...")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                i.fa.fa-search
-          // /input-group
+        //
+          li.sidebar-search
+            .input-group.custom-search-form
+              input.form-control(type="text", placeholder="Rechercher...")
+              span.input-group-btn
+                button.btn.btn-default(type="button")
+                  i.fa.fa-search
+            // /input-group
         each navElements
           +navElement
 
@@ -173,7 +171,8 @@ template(name="navElement")
       ul.nav.nav-second-level
         each children
           +navElement
-
+template(name="home")
+  #login.btn.btn-link.form-control(type="button") Connexion
 template(name="page")
   // Put page title and breadcrumbs here with `Router.routes[Session.get('active')]`
   +yield

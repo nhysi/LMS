@@ -25,13 +25,14 @@ Meteor.startup(() ->
 
 Template.topbar.events(
   'click #login': () ->
-    $('#loginModal').modal('show')
+    Router.go('/login')
 
   'click #sign-out': () ->
     Meteor.logout((err) ->
       if err?
         # !TODO: I should add a section for dismissable and timeout notifications... or maybe Growl-style notifications
         console.log(err)
+      Router.go('/')
     )
 )
 
@@ -46,6 +47,7 @@ Template.sidebar.rendered = () ->
 Template.navElement.helpers(
   isActive: () ->
     if this.name is Session.get('active')
+      document.title = "LMS - " + this.label
       return "active"
     else
       return ""
@@ -57,4 +59,15 @@ Template.taskDropdownElement.helpers(
 
   style: () ->
     return "width: " + this.percentComplete + "%"
+)
+
+Template.mainLayout.helpers(
+  setTitle: () ->
+    if Session.get('title')
+      document.title = Session.get('title')
+)
+
+Template.home.events(
+  'click #login': () ->
+    Router.go('/login')
 )

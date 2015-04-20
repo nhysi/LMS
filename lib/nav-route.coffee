@@ -58,10 +58,20 @@ class NavRouteList
   setRouter: (layoutTemplate = DEFAULT_MAIN_LAYOUT, redirectTemplate = 'loading', notFoundTemplate = '404') ->
     Router.configure({layoutTemplate, notFoundTemplate})
     # set regular routes
+    Router.onBeforeAction(() ->
+      if !Meteor.userId()
+        this.render("loginModal")
+        console.log("login")
+        return pause()
+      else
+        this.next()
+        console.log(r)
+    , {except:["login",""]}
+    )
     for r in @routes
       if r.redirect?
         Router.route(r.path, () ->
-          this.redirect(r.redirect);
+          this.redirect(r.redirect)
         )
       else
         Router.route(r.name, r)
