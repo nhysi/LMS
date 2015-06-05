@@ -34,4 +34,45 @@ template(name="classroom")
                     td 3TL2
                     td.centre 46
                     td.centre Aucun
- 
+    .row
+      .col-lg-12
+        .panel.panel-default
+          .panel-heading
+            | 3TL1
+          .panel-body
+            .table-responsive
+              form#student-form(role="form").form-inline
+                table#dataTables.table.table-striped.table-bordered.table-hover
+                  thead
+                    tr
+                      th #
+                      th Nom
+                      th Prénom
+                      th Nom d'utilisateur
+                      th Mot de passe
+                  tbody
+                    each students
+                      tr
+                        th *
+                        th #{profile.lastname}
+                        th #{profile.firstname}
+                        th #{username}
+                        th *******
+                    tr
+                        th +
+                        th 
+                          input#lastname.form-control(type="text",placeholder="Nom")
+                        th
+                          input#firstname.form-control(type="text",placeholder="Prénom")
+                        th
+                          .form-group.input-group
+                            input#name.form-control(type="text",placeholder="Nom d'utilisateur")
+                            span.input-group-btn
+                              button.btn.btn-default(type="button")
+                                i Génerer
+                        th
+                          .form-group.input-group
+                            input#pass.form-control(type="password",placeholder="Mot de passe")
+                            span.input-group-btn
+                              button.btn.btn-default(type="button")
+                                i Génerer
