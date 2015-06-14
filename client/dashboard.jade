@@ -14,7 +14,7 @@ template(name="dashboard")
               .col-xs-3
                 i.fa.fa-university.fa-5x
               .col-xs-9.text-right
-                .huge 3
+                .huge #{school}
                 div Écoles
           a(href="schools")
             .panel-footer
@@ -29,7 +29,7 @@ template(name="dashboard")
               .col-xs-3
                 i.fa.fa-users.fa-5x
               .col-xs-9.text-right
-                .huge 7
+                .huge #{class}
                 div Classes
           a(href="classroom")
             .panel-footer
@@ -44,7 +44,7 @@ template(name="dashboard")
               .col-xs-3
                 i.fa.fa-graduation-cap.fa-5x
               .col-xs-9.text-right
-                .huge 4
+                .huge #{course}
                 div Parcours
           a(href="course")
             .panel-footer
@@ -59,7 +59,7 @@ template(name="dashboard")
               .col-xs-3
                 i.fa.fa-child.fa-5x
               .col-xs-9.text-right
-                .huge 26
+                .huge #{active}
                 div Élèves actif
           a(href="#")
             .panel-footer

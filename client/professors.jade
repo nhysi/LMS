@@ -14,20 +14,15 @@ template(name="professors")
                 thead
                   tr
                     th #
-                    th Ecole
+                    th Ecoles
                     th Nom
                     th Prénom
                     th Adresse mail
                 tbody
-                  tr
-                    td 1
-                    td ECAM
-                    td X
-                    td W
-                    td x@ecam.be
-                  tr
-                    td 2
-                    td EPHEC
-                    td Y
-                    td Z
-                    td y@ephec.be
+                  each professors
+                    tr
+                      td *
+                      td #{profile.school}
+                      td #{profile.lastname}
+                      td #{profile.firstname}
+                      td {{{emails.[0].address}}}

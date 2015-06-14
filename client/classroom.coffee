@@ -26,5 +26,5 @@ Template.classroom.events({
 
 Template.classroom.helpers(
   students: ()->
-    return Meteor.users.find({profile:{statue:'student'}})
+    return Meteor.users.find({"profile.statue":'student'},{sort:{"profile.lastname":1,"profile.firstname":1}})
 )

@@ -10,21 +10,36 @@ template(name="schools")
             | Liste des écoles
           .panel-body
             .table-responsive
-              table#schools.table.table-striped.table-bordered.table-hover
-                thead
-                  tr
-                    th #
-                    th Nom
-                    th Adresse
-                    th Professeurs
-                tbody
-                  tr
-                    td 1
-                    td EPHEC
-                    td Louvain-La-Neuve
-                    td 8
-                  tr
-                    td 2
-                    td ECAM
-                    td Bruxelles
-                    td 14
+              form#class-form(role="form").form-inline
+                table#schools.table.table-striped.table-bordered.table-hover
+                  thead
+                    tr
+                      th #
+                      th Nom
+                      th Adresse
+                      th Professeurs
+                  tbody
+                    each schools
+                      +school  
+                    tr
+                      td +
+                      td
+                        input#name.form-control(type="text",placeholder="Nom")
+                      td
+                        input#adresse.form-control(type="text",placeholder="Adresse")
+                      td
+template(name="school")
+  if editing
+    tr
+      td E
+      td
+        input#ename.form-control(type="text", value="#{name}")
+      td
+        input#eadresse.form-control(type="text",value="#{address}")
+      td 0
+  else
+    tr
+      td *
+      td#edit #{name}
+      td#edit #{address}
+      td 0
