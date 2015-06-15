@@ -14,15 +14,15 @@ template(name="professors")
                 thead
                   tr
                     th #
-                    th Ecoles
                     th Nom
                     th Prénom
+                    th Ecoles
                     th Adresse mail
                 tbody
                   each professors
                     tr
                       td *
-                      td #{profile.school}
                       td #{profile.lastname}
                       td #{profile.firstname}
+                      td #{profile.school}
                       td {{{emails.[0].address}}}

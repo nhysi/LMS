@@ -1,5 +1,8 @@
 template(name="classroom")
   #page-wrapper
+    +classList
+    +currentClass
+template(name="classList")
     .row
       .col-lg-12
         h1.page-header Classes
@@ -22,18 +25,42 @@ template(name="classroom")
                     th Nombre d'étudiants
                     th Parcours en cours
                 tbody
-                  tr
-                    td 1
-                    td EPHEC
-                    td 3TL1
-                    td.center 42
-                    td.center Aucun
-                  tr
-                    td 2
-                    td EPHEC
-                    td 3TL2
-                    td.centre 46
-                    td.centre Aucun
+                  each class
+                    +showClass
+                  +addClass
+template(name="showClass")
+  if editing
+    tr
+      td E
+      td 
+        select#editSchool.form-control
+          option(value="empty")
+          each schools
+            option(value='#{_id}') #{name} - #{address}
+      td
+        input#editName.form-control(type="text",value="#{name}")
+      td
+      td
+  else      
+    tr
+      td *
+      td#edit #{school}
+      td#edit #{name}
+      td 0
+      td Aucun
+template(name="addClass")
+  tr
+    td +
+    td
+      select#addSchool.form-control
+        option(value="empty")
+        each schools
+          option(value='#{_id}') #{name} - #{address}
+    td
+      input#addName.form-control(type="text",placeholder="Classe")
+    td
+    td
+template(name="currentClass")
     .row
       .col-lg-12
         .panel.panel-default
@@ -53,24 +80,24 @@ template(name="classroom")
                   tbody
                     each students
                       tr
-                        th *
-                        th #{profile.lastname}
-                        th #{profile.firstname}
-                        th #{username}
-                        th *******
+                        td *
+                        td #{profile.lastname}
+                        td #{profile.firstname}
+                        td #{username}
+                        td *******
                     tr
-                        th +
-                        th 
+                        td +
+                        td 
                           input#lastname.form-control(type="text",placeholder="Nom")
-                        th
+                        td
                           input#firstname.form-control(type="text",placeholder="Prénom")
-                        th
+                        td
                           .form-group.input-group
                             input#name.form-control(type="text",placeholder="Nom d'utilisateur")
                             span.input-group-btn
                               button.btn.btn-default(type="button")
                                 i Génerer
-                        th
+                        td
                           .form-group.input-group
                             input#pass.form-control(type="password",placeholder="Mot de passe")
                             span.input-group-btn

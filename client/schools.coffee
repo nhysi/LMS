@@ -15,8 +15,13 @@ Template.schools.events({
     if e.keyCode == 13 && e.currentTarget.value isnt ""
       name = $('#ename').val()
       address = $('#eadresse').val()
-      SchoolsList.update {_id: this._id}, { $set: name: name,address:address}
-      Session.set("target",0)
+      prev = SchoolsList.find({_id:this._id}).fetch()[0].name
+      if prev != name
+        SchoolsList.update {_id: this._id}, { $set: name: name,address:address}
+        id = Classes.find({school:prev}).fetch()
+        for i, n of id
+          Classes.update({_id:n._id},{$set:school:name})
+        Session.set("target",0)
 })
 Template.school.editing = ->
   Session.get("target") == @_id
