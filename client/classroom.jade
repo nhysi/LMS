@@ -36,7 +36,7 @@ template(name="showClass")
         select#editSchool.form-control
           option(value="empty")
           each schools
-            option(value='#{_id}') #{name} - #{address}
+            option(value='#{_id}' selected = checked) #{name} - #{address}
       td
         input#editName.form-control(type="text",value="#{name}")
       td

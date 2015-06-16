@@ -17,6 +17,9 @@ Template.addClass.events({
 Template.showClass.helpers(
   schools : ()->
     return SchoolsList.find({})
+  checked : ()->
+    name = Classes.find({_id:Session.get("target")}).fetch()[0].school
+    return @name == name
 )
 Template.showClass.events({
   'click #edit': (e, t) ->
