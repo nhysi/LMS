@@ -24,17 +24,17 @@ template(name="professors")
                       td #{index}
                       td #{profile.lastname}
                       td #{profile.firstname}
-                      td #{profile.school}
+                      td #{mySchools}
                       td {{{emails.[0].address}}}
                   +addProfessor
 template(name="addProfessor")
   tr
     td +
     td
-      input#name.form-control(type="text",placeholder="Nom")
+      input#lastname.form-control(type="text",placeholder="Nom")
     td
-      input#name.form-control(type="text",placeholder="Prénom")
+      input#firstname.form-control(type="text",placeholder="Prénom")
     td
     td
-      input#name.form-control(type="text",placeholder="Adresse mail")
+      input#mail.form-control(type="text",placeholder="Adresse mail")
 

@@ -17,7 +17,7 @@ Template.addClass.events({
 
 })
 Template.showClass.helpers(
-  schools : ->
+  schools : () ->
     SchoolsList.find({},{sort:{name:1}})
   checked : ()->
     name = Classes.find({_id:Session.get("target")}).fetch()[0].school
