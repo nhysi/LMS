@@ -1,13 +1,12 @@
 navRoutes = [
   new NavRoute('dashboard', 'fa-dashboard', {label: "Panneau de gestion"})
   new NavRoute('index', '', {isMainNav: false, redirect: 'dashboard'})
+  new NavRoute('schools','fa-university',{label:"Ecoles"})
   new NavRoute('classroom', 'fa-users', {label: "Classes"})
   new NavRoute('course','fa-graduation-cap',{label:"Parcours"})
-  new NavRoute('courseManagement','',{label:"Créer un Parcours"})
-  new NavRoute('schools','fa-university',{label:"Ecoles"})
-  new NavRoute('activities','fa-puzzle-piece',{label:"Activitées"})
+  new NavRoute('learn','',{label:"Parcours étudiant"})
+  new NavRoute('activities','fa-puzzle-piece',{label:"Activités"})
   new NavRoute('professors','fa-user',{label:"Professeurs"})
-  new NavRoute('professorCreation','',{label:"Créer un professeur"})
 
 
   new NavRoute('charts', 'fa-bar-chart-o')

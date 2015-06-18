@@ -1,11 +1,15 @@
 template(name="course")
   #page-wrapper
+    +myCourse
+    //+courseManagement
+    +publicCourse
+template(name="myCourse")
     .row
       .col-lg-12
         H1.page-header Parcours
     .row
       .col-lg-12
-        .panel.panel-primary
+        .panel.panel-yellow
           .panel-heading
             | Mes parcours
           .panel-body
@@ -14,26 +18,36 @@ template(name="course")
                 thead
                   tr
                     th Nom
-                    th ..
+                    th Classe
+                    th Partage
                 tbody
-                  tr
-                    td te
-                    td st
-
-
-    .row
-      .col-lg-12
-        .panel.panel-green
-          .panel-heading
-            | Parcours public
-          .panel-body
-            .table-responsive
-              table#publicCourse.table.table-striped.table-bordered.table-hover
-                thead
-                  tr
-                    th Nom
-                    th ..
-                tbody
-                  tr
-                    td te
-                    td st
+                  +cours
+                  +cours
+                  td(colspan="3")
+                    +courseManagement
+                  +cours
+template(name="cours")
+  tr
+    td Algorithmie niveau 1
+    td Aucun
+    td
+      select
+        option Public
+        option Privé
+template(name="publicCourse")
+  .row
+    .col-lg-12
+      .panel.panel-yellow
+        .panel-heading
+          | Parcours public
+        .panel-body
+          .table-responsive
+            table#publicCourse.table.table-striped.table-bordered.table-hover
+              thead
+                tr
+                  th Nom
+                  th Auteur
+              tbody
+                tr
+                  td Test
+                  td Admin

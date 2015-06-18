@@ -8,7 +8,9 @@ head
   meta(name="viewport", content="width=device-width, initial-scale=1")
   meta(name="description", content="LMS")
   meta(name="author", content="Sylvain Nyssens")
-  title ILPADS
+
+  link(rel="icon",href="/favicon (3).ico", type="image/ico")
+  title LMS
 
 template(name="topbar")
   #wrapper
@@ -171,8 +173,6 @@ template(name="navElement")
       ul.nav.nav-second-level
         each children
           +navElement
-template(name="home")
-  #login.btn.btn-link.form-control(type="button") Connexion
 template(name="page")
   // Put page title and breadcrumbs here with `Router.routes[Session.get('active')]`
   +yield

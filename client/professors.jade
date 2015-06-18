@@ -21,8 +21,20 @@ template(name="professors")
                 tbody
                   each professors
                     tr
-                      td *
+                      td #{index}
                       td #{profile.lastname}
                       td #{profile.firstname}
                       td #{profile.school}
                       td {{{emails.[0].address}}}
+                  +addProfessor
+template(name="addProfessor")
+  tr
+    td +
+    td
+      input#name.form-control(type="text",placeholder="Nom")
+    td
+      input#name.form-control(type="text",placeholder="Prénom")
+    td
+    td
+      input#name.form-control(type="text",placeholder="Adresse mail")
+

@@ -61,10 +61,8 @@ class NavRouteList
     Router.onBeforeAction(() ->
       if !Meteor.userId()
         this.render("loginModal")
-        console.log("login")
       else
         this.next()
-        console.log(r)
     , {except:["login","sign-up",""]}
     )
     for r in @routes

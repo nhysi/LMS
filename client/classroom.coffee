@@ -1,6 +1,8 @@
 Template.classList.helpers(
   class : ()->
-    return Classes.find({},{sort:{school:1,name:1}})
+    Classes.find({},{sort:{school:1,name:1}}).map (s,index)->
+      s.index = index+1
+      s
 )
 Template.addClass.events({
   'keypress input' : (e,t) ->
@@ -15,16 +17,21 @@ Template.addClass.events({
 
 })
 Template.showClass.helpers(
-  schools : ()->
-    return SchoolsList.find({})
+  schools : ->
+    SchoolsList.find({},{sort:{name:1}})
   checked : ()->
     name = Classes.find({_id:Session.get("target")}).fetch()[0].school
     return @name == name
+  selected : ()->
+    return @_id == Session.get("currentClass")
+  nbStudent : ()->
+    return Meteor.users.find({"profile.statue":'student',"profile.class":@_id}).count()
 )
 Template.showClass.events({
-  'click #edit': (e, t) ->
-    console.log(@_id)
+  'dblclick #edit': (e, t) ->
     Session.set("target",@_id)
+  'click #edit': (e,t) ->
+    Session.set('currentClass',@_id)
   'keypress input': (e,t)->
     if e.keyCode == 13 && e.currentTarget.value isnt ""
       name = $('#editName').val()
@@ -40,7 +47,7 @@ Template.addClass.helpers(
   schools : ()->
     return SchoolsList.find({})
 )
-Template.currentClass.events({
+Template.addStudent.events({
   'keypress input': (e, t) ->
     if e.keyCode == 13
       lastname = t.find('#lastname').value
@@ -48,7 +55,7 @@ Template.currentClass.events({
       username = t.find('#name').value
       password = t.find('#pass').value
       $('#lastname').attr('for','inputError')
-      Accounts.createUser({username: username, password: password, profile: {statue: 'student', firstname:firstname, lastname:lastname}}, (err) ->
+      Accounts.createUser({username: username, password: password, profile: {statue: 'student', firstname:firstname, lastname:lastname,class:Session.get("currentClass")}}, (err) ->
         if err?
           Session.set('signUpErrorMessage', 'Impossible d\'ajouter l\'élève: '+ err.reason)
           console.log(err.reason)
@@ -65,8 +72,20 @@ Template.currentClass.events({
       )
       return false
 })
-
+Template.showStudent.editing = ->
+  Session.get("target") == @_id
+Template.showStudent.events({
+  'click #edit': (e,t) ->
+    Session.set('target',@_id)
+  'keypress input': (e,t)->
+    if e.keyCode == 13 && e.currentTarget.value isnt ""
+      pwd = $('#editPass').val()
+      #Meteor.Accounts.setPassword(@_id,pwd)
+      Session.set("target",0)
+})
 Template.currentClass.helpers(
   students: ()->
-    return Meteor.users.find({"profile.statue":'student'},{sort:{"profile.lastname":1,"profile.firstname":1}})
+    return Meteor.users.find({"profile.statue":'student',"profile.class":Session.get('currentClass')},{sort:{"profile.lastname":1,"profile.firstname":1}})
+  className: ()->
+    return Classes.find({_id:Session.get("currentClass")}).fetch()[0].name
 )

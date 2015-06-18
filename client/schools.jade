@@ -21,17 +21,11 @@ template(name="schools")
                   tbody
                     each schools
                       +school  
-                    tr
-                      td +
-                      td
-                        input#name.form-control(type="text",placeholder="Nom")
-                      td
-                        input#adresse.form-control(type="text",placeholder="Adresse")
-                      td
+                    +addSchool
 template(name="school")
   if editing
     tr
-      td E
+      td *
       td
         input#ename.form-control(type="text", value="#{name}")
       td
@@ -39,7 +33,15 @@ template(name="school")
       td 0
   else
     tr
-      td *
+      td #{index}
       td#edit #{name}
       td#edit #{address}
       td 0
+template(name="addSchool")
+  tr
+    td +
+    td
+      input#name.form-control(type="text",placeholder="Nom")
+    td
+      input#adresse.form-control(type="text",placeholder="Adresse")
+    td

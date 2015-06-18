@@ -1,13 +1,16 @@
 template(name="loginLayout")
   body
-    h1 Something
     +yield
-
+    
 template(name="loginModal")
   .container
     .row
+      .col-md-2.col-md-offset-5.col-sm-4.col-sm-offset-4
+        br
+        img.img-responsive.center-block(src="/logo.jpg")    
+    .row
       .col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
-        .login-panel.panel.panel-default
+       .login-panel.panel.panel-default
           .panel-heading
             a.close(href="/") &#215;
             h3.panel-title Connexion

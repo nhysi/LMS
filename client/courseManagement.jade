@@ -1,15 +1,10 @@
 template(name="courseManagement")
-  #page-wrapper
-    .row
-      .col-lg-12
-        h1.page-header Gestion de parcours
-    .row
-      .col-lg-12
-        .panel.panel-primary
-          .panel-heading
-            | Activitées disponible
-          .panel-body
-            .table-responsive.col-lg-6
+    //.row
+    // .col-lg-12
+    //    h1.page-header Gestion de parcours
+    br
+            
+    .table-responsive.col-lg-6
               table#schools.table.table-striped.table-bordered.table-hover
                 thead
                   tr
@@ -17,14 +12,12 @@ template(name="courseManagement")
                     th Nom
                     th Thème
                 tbody
-                  tr#1
-                    td 1
-                    td Activité 1
-                    td ILPADS
-                  tr#2
-                    td 2
-                    td Activité 2
-                    td ILPADS
+                  each activities
+                    +activity
+    each activities
+      if current
+        +courseDetails
+template(name="courseDetails")
             .panel.col-lg-6
               ul.nav.nav-tabs
                 li.active
@@ -36,15 +29,17 @@ template(name="courseManagement")
                 li
                   a(href="#more", data-toggle="tab") A propos
               .tab-content
-                #show.tab-pane.active
-                  h4 Home Tab
-                  p content
-                #details.tab-pane
-                  h4 Profile
-                  p content
-                #picture.tab-pane
-                  h4 Messages
-                  p content
-                #more.tab-pane
-                  h4 Settings
-                  p content
+                  #show.tab-pane.active
+                    p #{resume}
+                  #details.tab-pane
+                    p #{description}
+                  #picture.tab-pane
+                    img.img-responsive(src="#{image}")
+                  #more.tab-pane
+                    p #{about}
+template(name="activity")
+  tr
+    td *
+    td #{name}
+    td #{topic}
+
