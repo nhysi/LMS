@@ -73,23 +73,7 @@ template(name="dashboard")
         .panel.panel-default
           .panel-heading
             i.fa.fa-bar-chart-o.fa-fw
-            | Activité global de ce mois
-            .pull-right
-              .btn-group
-                button.btn.btn-default.btn-xs.dropdown-toggle(type="button", data-toggle="dropdown")
-                  | Actions
-                  span.caret
-                ul.dropdown-menu.pull-right(role="menu")
-                  li
-                    a(href="#") Action
-                  li
-                    a(href="#") Another action
-                  li
-                    a(href="#") Something else here
-                  li.divider
-                  li
-                    a(href="#") Separated link
-          // /.panel-heading
+            | Activité globale de ce mois
           .panel-body
             #morris-area-chart
           // /.panel-body
@@ -97,7 +81,7 @@ template(name="dashboard")
         .panel.panel-default
           .panel-heading
             i.fa.fa-bar-chart-o.fa-fw
-            | Autre graphique intéressant
+            | Graphique intéressant
             .pull-right
               .btn-group
                 button.btn.btn-default.btn-xs.dropdown-toggle(type="button", data-toggle="dropdown")
@@ -105,76 +89,16 @@ template(name="dashboard")
                   span.caret
                 ul.dropdown-menu.pull-right(role="menu")
                   li
-                    a(href="#") Action
+                    a(href="#") Informations
                   li
-                    a(href="#") Another action
+                    a(href="#") Modifier
                   li
-                    a(href="#") Something else here
+                    a(href="#") Paramètres
                   li.divider
                   li
-                    a(href="#") Separated link
-          // /.panel-heading
+                    a(href="#") Masquer
           .panel-body
-            .row
-              .col-lg-4
-                .table-responsive
-                  table.table.table-bordered.table-hover.table-striped
-                    thead
-                      tr
-                        th #
-                        th Date
-                        th Time
-                        th Amount
-                    tbody
-                      tr
-                        td 3326
-                        td 10/21/2013
-                        td 3:29 PM
-                        td $321.33
-                      tr
-                        td 3325
-                        td 10/21/2013
-                        td 3:20 PM
-                        td $234.34
-                      tr
-                        td 3324
-                        td 10/21/2013
-                        td 3:03 PM
-                        td $724.17
-                      tr
-                        td 3323
-                        td 10/21/2013
-                        td 3:00 PM
-                        td $23.71
-                      tr
-                        td 3322
-                        td 10/21/2013
-                        td 2:49 PM
-                        td $8345.23
-                      tr
-                        td 3321
-                        td 10/21/2013
-                        td 2:23 PM
-                        td $245.12
-                      tr
-                        td 3320
-                        td 10/21/2013
-                        td 2:15 PM
-                        td $5663.54
-                      tr
-                        td 3319
-                        td 10/21/2013
-                        td 2:13 PM
-                        td $943.45
-                // /.table-responsive
-              // /.col-lg-4 (nested)
-              .col-lg-8
-                #morris-bar-chart
-              // /.col-lg-8 (nested)
-            // /.row
-          // /.panel-body
-        // /.panel-body
-        // /.panel
+          // /.panel-heading
       // /.col-lg-8
       .col-lg-4
         .panel.panel-default

@@ -30,7 +30,6 @@ Template.topbar.events(
   'click #sign-out': () ->
     Meteor.logout((err) ->
       if err?
-        # !TODO: I should add a section for dismissable and timeout notifications... or maybe Growl-style notifications
         console.log(err)
       Router.go('/')
     )

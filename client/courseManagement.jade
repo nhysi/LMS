@@ -13,7 +13,8 @@ template(name="courseManagement")
                     th Thème
                 tbody
                   each activities
-                    +activity
+                    if include
+                      +activity
     each activities
       if current
         +courseDetails

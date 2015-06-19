@@ -20,13 +20,25 @@ template(name="professors")
                     th Adresse mail
                 tbody
                   each professors
-                    tr
-                      td #{index}
-                      td #{profile.lastname}
-                      td #{profile.firstname}
-                      td #{mySchools}
-                      td {{{emails.[0].address}}}
-                  +addProfessor
+                    if editing
+                      tr
+                        td #{index}
+                        td
+                          input#editLastname.form-control(type="text", value="#{profile.lastname}")
+                        td
+                          input#editFirstname.form-control(type="text", value="#{profile.firstname}")
+                        td #{mySchools}
+                        td
+                          input#editMail.form-control(type="text",value="")
+                    else
+                      tr
+                        td #{index}
+                        td#edit #{profile.lastname}
+                        td#edit #{profile.firstname}
+                        td #{mySchools}
+                        td#edit {{{emails.[0].address}}}
+                  if isAdmin
+                    +addProfessor
 template(name="addProfessor")
   tr
     td +

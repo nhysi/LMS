@@ -21,15 +21,15 @@ template(name="myCourse")
                     th Classe
                     th Partage
                 tbody
-                  +cours
-                  +cours
-                  td(colspan="3")
-                    +courseManagement
-                  +cours
+                  each parcours
+                    +cours
+                    if selected
+                      td(colspan="3")
+                        +courseManagement
 template(name="cours")
   tr
-    td Algorithmie niveau 1
-    td Aucun
+    td#check #{name}
+    td#check #{topic}
     td
       select
         option Public
